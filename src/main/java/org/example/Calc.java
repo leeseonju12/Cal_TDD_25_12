@@ -10,17 +10,36 @@ public class Calc {
 
         System.out.println("exp2 : " + exp);
 
-        String[] bits = exp.split(" \\+ ");
+        boolean needToPlus = exp.contains("+");
+        boolean needTomultiply = exp.contains("*");
 
-        int a = Integer.parseInt(bits[0]);
-        int b = Integer.parseInt(bits[1]);
-        int c = 0;
+        if (needToPlus){
+            String[] bits = exp.split(" \\+ ");
 
-        if (bits.length > 2) {
-            c = Integer.parseInt(bits[2]);
+            int a = Integer.parseInt(bits[0]);
+            int b = Integer.parseInt(bits[1]);
+            int c = 0;
+
+            if (bits.length > 2) {
+                c = Integer.parseInt(bits[2]);
+            }
+
+            return a + b + c;
         }
 
-        return a + b + c;
+        else if (needTomultiply){
+            String[] bits = exp.split(" \\* ");
 
+            int a = Integer.parseInt(bits[0]);
+            int b = Integer.parseInt(bits[1]);
+            int c = 0;
+
+            if (bits.length > 2) {
+                c = Integer.parseInt(bits[2]);
+            }
+
+            return a * b * c;
+        }
+        throw new RuntimeException("해석 불가 : 올바른 계산식이 아님");
     }
 }
