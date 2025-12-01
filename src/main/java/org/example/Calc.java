@@ -11,12 +11,30 @@ public class Calc {
 //            return 4;
 //        }
 //        return 2;
+        // 만약 더하기라면 + 로직을 실행하고 아니라면 - 로직을 실행하도록
+        String[] bits = null;
 
-        String[] bits = exp.split(" \\+ ");
+        // 사칙연산 판별 조건문
+        if (exp.contains("+")) {
+            bits = exp.split(" \\+ ");
+        }
+
+        else if (exp.contains("-")) {
+            bits = exp.split(" - ");
+        }
 
         int a = Integer.parseInt(bits[0]);
         int b = Integer.parseInt(bits[1]);
 
-        return a + b;
+        // 값 반환 조건문
+        if (exp.contains("+")) {
+            return a + b;
+        }
+        else if (exp.contains("-")) {
+            return a - b;
+        }
+
+
+        return 0;
     }
 }
